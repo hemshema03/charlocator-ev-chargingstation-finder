@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Booking</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/static/user/book.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<header>
+    <a href="{{ url_for('home') }}" class="logo">
+        <img src="/static/pic/LOGO1.PNG" alt="logo">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- BODY SECTION -->
+<div class="container">
+    <h1>EV Charging Booking</h1>
+
+    <form action="/book" method="POST" class="booking-form">
+        <!-- Hidden Input for Discount Eligibility -->
+        <input type="hidden" id="rewardClaimed" value="{{ reward_claimed }}">
+
+        <!-- Station Info -->
+        <label for="Station_name">Station Name:</label>
+        <input type="text" id="Station_name" name="Station_name" value="{{ request.args.get('Station_name') }}" readonly>
+
+        <label for="City">City:</label>
+        <input type="text" id="City" name="City" value="{{ request.args.get('City') }}" readonly>
+
+        <label for="Available_ports">Selected Port:</label>
+        <input type="text" id="Available_ports" name="Available_ports" value="{{ request.args.get('Available_ports') }}" readonly>
+
+        <!-- Date & Time Selection -->
+        <label for="Booking_date">Booking Date:</label>
+        <input type="date" id="Booking_date" name="Booking_date" required>
+
+        <label for="Time_from">Time From:</label>
+        <input type="time" id="Time_from" name="Time_from" required>
+
+        <label for="Time_to">Time To:</label>
+        <input type="time" id="Time_to" name="Time_to" required>
+
+        <!-- Pricing Details -->
+        <label for="price_per_hour">Price per Hour (₹):</label>
+        <input type="number" id="price_per_hour" name="price_per_hour" value="100" readonly>
+
+        <label for="total_price">Total Price (₹):</label>
+        <input type="text" id="total_price" name="total_price" readonly>
+
+        <!-- Discount Section (Hidden by Default) -->
+        <div id="discountContainer" style="display: none;">
+            <label for="discounted_price">Discounted Price (₹):</label>
+            <input type="text" id="discounted_price" name="discounted_price" readonly>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBooking" onclick="return validateBooking()">Book Now</button>
+    </form>
+</div>
+
+
+
+<!-- JavaScript -->
+<script>
+    function calculatePrice() {
+        let pricePerHour = parseFloat(document.getElementById("price_per_hour").value);
+        let timeFrom = document.getElementById("Time_from").value;
+        let timeTo = document.getElementById("Time_to").value;
+
+        if (timeFrom && timeTo) {
+            let startTime = new Date(`1970-01-01T${timeFrom}:00`);
+            let endTime = new Date(`1970-01-01T${timeTo}:00`);
+            let duration = (endTime - startTime) / (1000 * 60 * 60); // Convert milliseconds to hours
+
+            if (duration > 0) {
+                let totalPrice = duration * pricePerHour;
+                document.getElementById("total_price").value = totalPrice.toFixed(2);
+
+                // Get discount eligibility from the hidden input field
+                let hasDiscount = document.getElementById("rewardClaimed").value === "1"; // 1 = true, 0 = false
+
+                if (hasDiscount) {
+                    let discountedPrice = totalPrice * 0.9; // Apply 10% discount
+                    document.getElementById("discounted_price").value = discountedPrice.toFixed(2);
+                    document.getElementById("discountContainer").style.display = "block"; // Show discount section
+                } else {
+                    document.getElementById("discountContainer").style.display = "none"; // Hide discount section
+                }
+            } else {
+                // Invalid time selection
+                document.getElementById("total_price").value = ""; // Clear total price
+                document.getElementById("discounted_price").value = ""; // Clear discount price
+                document.getElementById("discountContainer").style.display = "none"; // Hide discount section
+                alert("Please select a valid time range.");
+            }
+        }
+    }
+
+    function validateBooking() {
+        let totalPrice = document.getElementById("total_price").value;
+        if (totalPrice === "Invalid Time" || totalPrice === "" || totalPrice <= 0) {
+            alert("Please select a valid time slot.");
+            return false;
+        }
+        return true;
+    }
+
+    document.getElementById("Time_from").addEventListener("change", calculatePrice);
+    document.getElementById("Time_to").addEventListener("change", calculatePrice);
+</script>
+
+</body>
+</html>

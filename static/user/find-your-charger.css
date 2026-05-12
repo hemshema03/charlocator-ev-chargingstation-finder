@@ -1,0 +1,161 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f8c291, #6a89cc);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Remove Default List and Link Styles */
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 10%;
+    background-color: #9C1B3D;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 60px; /* Ensures the header has proper height */
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    font-weight: 900;
+    margin-left: -40px; /* Adjust this value as needed */
+}
+
+
+.logo img {
+    height: 45px;
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 10px;
+}
+
+/* Home Button - More Interactive */
+nav ul li a {
+    color: #FFF;
+    display: block;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    box-shadow: 0 4px 8px rgba(255, 65, 108, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effect for Home Button */
+nav ul li a:hover {
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 75, 43, 0.7);
+}
+
+/* Container Styles */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 140px auto 50px; /* Adjusted margin for better spacing */
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 34px;
+    color: #333;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Select and Button Styling */
+select, button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+    transition: 0.3s;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Focus Effect for Select */
+select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
+}
+
+/* Button Styling */
+button {
+    background: linear-gradient(to right, #28a745, #218838);
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect for Button */
+button:hover {
+    background: linear-gradient(to right, #218838, #28a745);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 5%;
+    }
+
+    nav ul {
+        margin-top: 10px;
+    }
+
+    .container {
+        margin-top: 160px;
+        width: 95%;
+        padding: 30px;
+    }
+}

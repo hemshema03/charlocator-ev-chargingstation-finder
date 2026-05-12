@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="/static/admin/user-list.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>User List</h2>
+    <a href="/admin-home" class="btn btn-secondary mb-3">Back</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>SL.NO</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.email }}</td>
+                <td><a href="/adm_delete_user/{{ i.user_id }}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

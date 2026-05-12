@@ -1,0 +1,305 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(to right, #f8c291, #6a89cc); /* Updated background */
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 10%;
+    background-color: #9C1B3D;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 60px; /* Ensures the header has proper height */
+}
+
+/* Logo - Moved Slightly to the Right */
+.logo {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    font-weight: 900;
+    margin-left: -65px; /* Moves logo slightly to the right */
+    
+    
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav {
+    margin-left: auto;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none; /* Removes bullet points */
+}
+
+nav ul li {
+    margin-left: -30px;
+    margin-right: -50px;
+}
+
+/* Home Button - More Interactive */
+nav ul li a {
+    color: #FFF;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    box-shadow: 0 4px 8px rgba(255, 65, 108, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect for Home Button */
+nav ul li a:hover {
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 75, 43, 0.7);
+}
+
+/* Login Button (CTA) - More Interactive */
+.cta {
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    color: #FFF;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(11, 232, 74, 0.5);
+}
+
+/* Hover Effect for Login Button */
+.cta:hover {
+    background: linear-gradient(to right, #09c739, #0be84a);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(11, 232, 74, 0.7);
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Services Section */
+.services {
+    padding: 40px;
+    background: transparent; /* Removed yellow background */
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.charge {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.card {
+    background: linear-gradient(to right,  #6a89cc,#f8c291); /* Matching background gradient */
+    padding: 20px;
+    border-radius: 10px;
+    /* Removed box-shadow */
+}
+
+.card img {
+    display: block;
+    margin: auto;
+    height: 250px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card p {
+    text-align: justify;
+}
+
+/* About Section */
+.about {
+    padding: 40px;
+}
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about p {
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.about button {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+.about button:hover {
+    background-color: #666;
+}
+
+/* Contact Section */
+.contact {
+    padding: 40px;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2); /* Light gradient for a modern look */
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"], form input[type="email"], form textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background: #f0f8ff; /* Light blue tint for a fresh look */
+}
+
+form textarea {
+    height: 100px;
+}
+
+form button[type="submit"] {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+form button[type="submit"]:hover {
+    background-color: #666;
+}
+
+/* Footer */
+footer {
+    position: sticky;
+    top: 100vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #9C1B3D;
+    height: 150px; /* Reduced footer height */
+    font-family: "Open Sans";
+    padding-top: 10px;
+    color: #fff;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-size: 1.5rem; /* Reduced font size */
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 2rem;
+}
+
+.footer-content p {
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+}
+
+.socials {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.socials li {
+    margin: 0 10px;
+}
+
+.socials a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.socials a i {
+    font-size: 1.1rem;
+    transition: color .4s ease;
+}
+
+.socials a:hover i {
+    color: aqua;
+}
+
+.footer-bottom {
+    background: #000;
+    width: 100vw;
+    padding: 10px 0; /* Reduced padding for smaller footer */
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span {
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}
