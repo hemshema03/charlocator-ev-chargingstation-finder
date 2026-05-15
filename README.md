@@ -1,65 +1,191 @@
-# ChargeLocator
+# ChargeLocator – EV Charging Station Finder & Booking System
 
-ChargeLocator is a Flask + MySQL web application for finding EV charging stations and booking charging slots.
+ChargeLocator is a web-based Electric Vehicle (EV) Charging Station Finder and Slot Booking System developed using Flask and MySQL. The application helps EV users locate nearby charging stations, check charger availability, and book charging slots efficiently through a user-friendly interface.
+
+---
 
 ## Features
 
-- User registration and login
-- Admin dashboard
-- Manage charging stations
+### User Features
+- User registration and secure login
 - Search charging stations by city and charger type
+- View charging station details
 - Book charging slots
-- View bookings
-- Feedback/contact form
+- View booking history
+- Feedback and contact form
 - Credit points and reward discount system
 
-## Tech Stack
+### Admin Features
+- Admin dashboard
+- Add and manage charging stations
+- View user bookings
+- Manage station availability
+- View user feedback
 
-- Python Flask
-- MySQL
-- HTML, CSS, JavaScript
+---
 
-## Setup
+## Technologies Used
 
-1. Create a virtual environment:
+| Technology | Purpose |
+|------------|---------|
+| Python Flask | Backend Framework |
+| MySQL | Database Management |
+| HTML | Frontend Structure |
+| CSS | Styling |
+| JavaScript | Frontend Interactivity |
+
+---
+
+## Project Structure
+
+```text
+ChargeLocator/
+│
+├── app.py
+├── DBConnection.py
+├── requirements.txt
+├── database.sql
+├── templates/
+├── static/
+├── screenshots/
+└── README.md
+```
+
+---
+
+## Installation & Setup
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/hemshema03/charlocator-ev-chargingstation-finder.git
+```
+
+### Step 2: Navigate to Project Folder
+
+```bash
+cd charlocator-ev-chargingstation-finder
+```
+
+### Step 3: Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-2. Activate the virtual environment:
+### Step 4: Activate Virtual Environment
 
-Windows:
+#### Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-3. Install requirements:
+---
+
+## Database Setup
+
+### Step 1: Install MySQL
+
+Install:
+- MySQL Server
+- MySQL Workbench
+
+Official Download:
+https://dev.mysql.com/downloads/installer/
+
+---
+
+### Step 2: Import Database
+
+Open MySQL Workbench and execute:
+
+```text
+database.sql
+```
+
+OR
+
+Go to:
+
+```text
+Server → Data Import
+```
+
+Choose:
+
+```text
+Import from Self-Contained File
+```
+
+Select:
+
+```text
+database.sql
+```
+
+Click:
+
+```text
+Start Import
+```
+
+---
+
+### Step 3: Verify Database
+
+Ensure database name is:
+
+```text
+ev_db4
+```
+
+---
+
+### Step 4: Configure Database Connection
+
+Open:
+
+```text
+DBConnection.py
+```
+
+Update MySQL credentials if required:
+
+```python
+self.cnx = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_mysql_password",
+    database="ev_db4"
+)
+```
+
+---
+
+## Install Required Packages
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Create the database in MySQL:
+---
 
-```bash
-mysql -u root -p < database.sql
-```
-
-5. Configure environment variables. Copy `.env.example` to `.env` and update your MySQL username/password.
-
-6. Run the project:
+## Run the Application
 
 ```bash
 python app.py
 ```
 
-Open: http://127.0.0.1:5000
+Open browser:
 
-## Default Login
+```text
+http://127.0.0.1:5000
+```
 
-## Screenshots
+---
+
+## Project Screenshots
 
 ### Home Page
 ![Home Page](screenshots/index.png)
@@ -76,6 +202,28 @@ Open: http://127.0.0.1:5000
 ### Admin Panel
 ![Admin Panel](screenshots/Admin_manage_station.png.png)
 
+---
+
+## Future Enhancements
+
+- Google Maps Integration
+- Real-time charger availability
+- Online payment gateway
+- Mobile responsive UI
+- Live location-based station finder
+- Email/SMS notifications
+
+---
+
 ## Author
 
-Hemachandran M
+**Hemachandran M**
+
+M.Sc. Software Systems  
+Sri Krishna Arts and Science College
+
+---
+
+## License
+
+This project is developed for educational and portfolio purposes.

@@ -7,7 +7,7 @@ class Db:
         self.cnx = mysql.connector.connect(
             host=os.environ.get("DB_HOST", "localhost"),
             user=os.environ.get("DB_USER", "root"),
-            password=os.environ.get("DB_PASSWORD", "root"),
+            password=os.environ.get("DB_PASSWORD", "root123"),
             database=os.environ.get("DB_NAME", "ev_db4")
         )
         self.cur = self.cnx.cursor(dictionary=True, buffered=True)
