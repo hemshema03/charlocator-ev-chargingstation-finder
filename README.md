@@ -59,16 +59,23 @@ Open: http://127.0.0.1:5000
 
 ## Default Login
 
-Admin:
+## Screenshots
 
-- Username: `admin`
-- Password: `123`
+### Home Page
+![Home Page](screenshots/index.png)
 
-User:
+### Login Page
+![Login](screenshots/login.png)
 
-- Username: `user`
-- Password: `user`
+### User Dashboard
+![Dashboard](screenshots/UserDasboard.png.png)
 
-## Git Note
+### Booking Form
+![Booking Form](screenshots/bookingform.png)
 
-Do not push `venv`, `.env`, `__pycache__`, or database password files to GitHub.
+### Admin Panel
+![Admin Panel](screenshots/Admin_manage_station.png.png)
+
+## Author
+
+Hemachandran M
