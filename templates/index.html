@@ -3,108 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChargeLocator | EV Charging Station Finder</title>
+
     <link rel="stylesheet" href="/static/index.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Charge locator </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-    
+<body>
 
-<!-- HEADER SECTION -->
+<header class="navbar">
+    <a href="{{ url_for('home') }}" class="brand">
+        <img src="/static/pic/LOGO1.PNG" alt="ChargeLocator Logo">
+        <span>ChargeLocator</span>
+    </a>
 
-
-<header>
-  
-  <a href="{{ url_for('home') }}" class="logo"> <img src="/static/pic/LOGO1.PNG" alt="logo"> </a>
-  
-  <nav>
-    <ul>
-      
-     <li><a href="{{ url_for('login') }}" class="cta">Login</a></li>
-  </ul>
-  </nav>
-  
-  
+    <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#about">About</a>
+        <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+    </nav>
 </header>
 
-    <body>
+<section class="hero">
+    <div class="hero-bg-glow glow-one"></div>
+    <div class="hero-bg-glow glow-two"></div>
 
-      <div class="hero">
-        <h1>Electric Vehicle Charging Station</h1>
-        <p>Find charge Book your charging slot, enjoy the ride</p>
-      </div>
-    </header>
-    
-    <section class="services">
-      <h2>Our Services</h2>
-      <div class="charge">
-        <div class="card">
-          <img src="/static/pic/carcharge-removebg-preview.png" alt="">
-          <h3>Charging</h3>
-          <p>Charge your electric car with clean energy</p>
+    <div class="hero-content">
+        <p class="hero-badge">
+            <i class="fa-solid fa-bolt"></i>
+            Smart EV Charging Slot Booking
+        </p>
+
+        <h1>
+            Find EV Charging Stations
+            <span>Book Your Slot Instantly</span>
+        </h1>
+
+        <p class="hero-description">
+            ChargeLocator helps electric vehicle users find nearby charging stations,
+            check charger availability, and reserve charging slots with a smooth digital experience.
+        </p>
+
+        <div class="hero-actions">
+            <a href="{{ url_for('login') }}" class="primary-btn">
+                Get Started
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a href="#services" class="secondary-btn">
+                Explore Services
+            </a>
         </div>
-        <div class="card">
-          <img src="/static/pic/man.webp" alt="">
-          <h3>Membership</h3>
-          <p>Join our membership program and save money</p>
+
+        <div class="hero-stats">
+            <div>
+                <h3>40+</h3>
+                <p>Stations</p>
+            </div>
+            <div>
+                <h3>5</h3>
+                <p>Cities</p>
+            </div>
+            <div>
+                <h3>24/7</h3>
+                <p>Support</p>
+            </div>
         </div>
-        <div class="card">
-          <img src="/static/pic/support-removebg-preview.png" alt="">
-          <h3>Support</h3>
-          <p>24/7 support to help you with your charging needs</p>
+    </div>
+
+    <div class="hero-visual">
+        <div class="charging-card">
+            <div class="status-dot"></div>
+            <p>Charging Station Active</p>
+            <h4>AC Level 2 Charging</h4>
+            <div class="battery">
+                <div class="battery-fill"></div>
+            </div>
+            <span>82% Charged</span>
         </div>
-      </div>
-    </section>
 
-    <section class="about">
-      <h2>About Us</h2>
-      <p>"We are here to help you find and book EV charging slots with real-time availability for a seamless charging experience! Locate the nearest charging station, check slot availability instantly, and secure your spot in just a few clicks. Drive electric with ease and confidence!"</p>
-      <!-- <button>Learn More</button> -->
-    </section>
+        <div class="ev-scene">
+            <div class="moon"></div>
 
-    <!-- <section class="contact">
-      <h2>Contact Us</h2>
-      <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message"></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </section> -->
+            <div class="charger">
+                <div class="charger-screen">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="charger-body"></div>
+                <div class="charger-wire"></div>
+            </div>
 
-    
+            <div class="car">
+                <div class="car-top"></div>
+                <div class="car-body">
+                    <div class="car-light"></div>
+                    <div class="car-window"></div>
+                </div>
+                <div class="wheel wheel-left"></div>
+                <div class="wheel wheel-right"></div>
+            </div>
 
+            <div class="road">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="services" id="services">
+    <div class="section-heading">
+        <p>Our Services</p>
+        <h2>Everything You Need for EV Charging</h2>
+    </div>
 
+    <div class="service-grid">
+        <div class="service-card">
+            <div class="icon-box">
+                <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <h3>Find Stations</h3>
+            <p>Search EV charging stations by city and charger type with available station details.</p>
+        </div>
 
+        <div class="service-card">
+            <div class="icon-box">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h3>Book Slots</h3>
+            <p>Reserve charging slots in advance and avoid waiting time at charging locations.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            <h3>Rewards</h3>
+            <p>Earn credit points for bookings and claim discount rewards for future charging slots.</p>
+        </div>
+    </div>
+</section>
+
+<section class="steps" id="how-it-works">
+    <div class="section-heading">
+        <p>How It Works</p>
+        <h2>Book Your Charging Slot in 3 Simple Steps</h2>
+    </div>
+
+    <div class="steps-wrapper">
+        <div class="step-card">
+            <span>01</span>
+            <h3>Select Location</h3>
+            <p>Choose your city and preferred charging type.</p>
+        </div>
+
+        <div class="step-card">
+            <span>02</span>
+            <h3>Pick Station</h3>
+            <p>View available charging stations and select the best option.</p>
+        </div>
+
+        <div class="step-card">
+            <span>03</span>
+            <h3>Confirm Booking</h3>
+            <p>Book your slot and manage booking history from your dashboard.</p>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-card">
+        <div>
+            <p class="section-label">About ChargeLocator</p>
+            <h2>Making EV Charging Easier, Faster, and Smarter</h2>
+        </div>
+
+        <p>
+            ChargeLocator is designed to simplify the EV charging experience by helping users
+            find charging stations, check available ports, book charging slots, and manage their
+            bookings from one platform.
+        </p>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <h3>ChargeLocator</h3>
+            <p>EV Charging Station Finder and Slot Booking System</p>
+        </div>
+
+        <p>&copy; 2025 ChargeLocator. All rights reserved.</p>
+    </div>
+</footer>
 
 </body>
-
-<!-- FOOTER SECTION -->
-
-
- 
-
-        <footer>
-            <div class="footer-content">
-                <h3>footer</h3>
-                <p>&copy; 2025 EV Charging Station Finder. All rights reserved.</p>
-            </div>
-        </footer>
-   
-    </html>
-
-
-
-
-
-
-
-
-
-
-
-
+</html>
