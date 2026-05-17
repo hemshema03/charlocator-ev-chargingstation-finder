@@ -3,85 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChargeLocator | Login</title>
+
     <link rel="stylesheet" href="/static/login.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="icon" href="/static/temp/assets/images/favicon.png"> -->
-    <title>login </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<header>
-    <a href="{{ url_for('home') }}" class="logo"> <img src="/static/pic/LOGO1.PNG" alt="logo"> </a>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <!-- <li><a href="{{ url_for('find_your_charger') }}">Find your charger</a></li> -->
-        
-            
-        </ul>
-    </nav>
-    
-    
-</header>
+
 <body>
-    <div class="container">
-        <form action="" method ="post" class="form" id="login">
-            <h1 class="form__title">Login</h1>
+
+<header class="auth-navbar">
+    <a href="{{ url_for('home') }}" class="brand">
+        <img src="/static/pic/LOGO1.PNG" alt="ChargeLocator Logo">
+        <span>ChargeLocator</span>
+    </a>
+
+    <a href="{{ url_for('home') }}" class="home-btn">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+</header>
+
+<main class="auth-page">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <section class="auth-left">
+        <p class="badge">
+            <i class="fa-solid fa-bolt"></i>
+            EV Charging Access
+        </p>
+
+        <h1>
+            Power Your Journey with
+            <span>Smart Charging</span>
+        </h1>
+
+        <p class="auth-description">
+            Login to find EV charging stations, book available slots, manage bookings,
+            and earn reward points for every successful charge.
+        </p>
+
+        <div class="mini-dashboard">
+            <div class="charging-status">
+                <div class="status-icon">
+                    <i class="fa-solid fa-charging-station"></i>
+                </div>
+                <div>
+                    <h3>Station Online</h3>
+                    <p>Fast charger available near you</p>
+                </div>
+            </div>
+
+            <div class="battery-card">
+                <div class="battery-top">
+                    <span>Battery Status</span>
+                    <strong>82%</strong>
+                </div>
+                <div class="battery-bar">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="auth-card">
+
+        <form action="" method="post" class="form" id="login">
+            <h2 class="form__title">Welcome Back</h2>
+            <p class="form-subtitle">Login to continue your EV charging journey</p>
+
             <div class="form__message form__message--error"></div>
+
             <div class="form__input-group">
-                <input type="text" name ="username" id="username" class="form__input" autofocus placeholder="Username or email">
-                <div class="form__input-error-message"></div>
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="username" id="username" class="form__input" placeholder="Username or Email" required>
             </div>
+
             <div class="form__input-group">
-                <input type="password"  name ="password" id="password" class="form__input" autofocus placeholder="Password">
-                <div class="form__input-error-message"></div>
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" id="password" class="form__input" placeholder="Password" required>
             </div>
-            <button class="form__button" type="submit" name="button" id="button" value="LOGIN">LOGIN</button>
+
+            <button class="form__button" type="submit" name="button" id="button" value="LOGIN">
+                Login
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
             <p class="form__text">
-                <!-- <a href="./forgot_password" class="form__link">Forgot your password?</a> -->
-            </p>
-            <p class="form__text">
-                <a class="form__link" href="#" id="createAccountLink">Don't have an account? Create account</a>
+                <a class="form__link" href="#" id="createAccountLink">
+                    Don't have an account? Create account
+                </a>
             </p>
         </form>
+
         <form action="{{ url_for('register') }}" method="post" class="form form--hidden" id="createAccount">
-            <h1 class="form__title">Create Account</h1>
+            <h2 class="form__title">Create Account</h2>
+            <p class="form-subtitle">Join ChargeLocator and start booking slots</p>
+
             {% if error %}
             <div class="form__message form__message--error">{{ error }}</div>
             {% endif %}
-            <div class="form__input-group">
-              <input type="text" name="signupUsername" id="signupUsername" class="form__input" autofocus placeholder="Username">
-              <div class="form__input-error-message"></div>
-            </div>
-            <div class="form__input-group">
-              <input type="text" name="email" class="form__input" autofocus placeholder="Email Address">
-              <div class="form__input-error-message"></div>
-            </div>
-            <div class="form__input-group">
-              <input type="password" name="password" class="form__input" autofocus placeholder="Password">
-              <div class="form__input-error-message"></div>
-            </div>
-            <div class="form__input-group">
-              <input type="password" name="confirmPassword" class="form__input" autofocus placeholder="Confirm password">
-              <div class="form__input-error-message"></div>
-            </div>
-            <button class="form__button" type="submit">Continue</button>
-            <p class="form__text">
-              <a class="form__link" href="#" id="loginLink">Already have an account? Sign in</a>
-            </p>
-          </form>
-    </div>
-    <script>
-        function setFormAction(formId) {
-            var form = document.getElementById(formId);
-            form.action = "{{ url_for('register') }}";
-        }
-    </script>
-    <script src="/static/login-script.js"></script> 
-</body>
 
-<footer>
-    <div class="footer-content">
-        <h3>footer</h3>
-        <p>&copy; 2025 EV Charging Station Finder. All rights reserved.</p>
-    </div>
+            <div class="form__input-group">
+                <i class="fa-solid fa-user-plus"></i>
+                <input type="text" name="signupUsername" id="signupUsername" class="form__input" placeholder="Username" required>
+            </div>
+
+            <div class="form__input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" class="form__input" placeholder="Email Address" required>
+            </div>
+
+            <div class="form__input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" class="form__input" placeholder="Password" required>
+            </div>
+
+            <div class="form__input-group">
+                <i class="fa-solid fa-shield-halved"></i>
+                <input type="password" name="confirmPassword" class="form__input" placeholder="Confirm Password" required>
+            </div>
+
+            <button class="form__button" type="submit">
+                Create Account
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <p class="form__text">
+                <a class="form__link" href="#" id="loginLink">
+                    Already have an account? Sign in
+                </a>
+            </p>
+        </form>
+
+    </section>
+</main>
+
+<footer class="auth-footer">
+    <p>&copy; 2025 ChargeLocator. All rights reserved.</p>
 </footer>
+
+<script src="/static/login-script.js"></script>
+
+</body>
 </html>

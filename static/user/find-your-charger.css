@@ -1,7 +1,16 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Global Styles */
+:root {
+    --primary: #00f5a0;
+    --secondary: #00d9f5;
+    --accent: #7c3cff;
+    --text-main: #ffffff;
+    --text-muted: #b8c7d1;
+    --glass: rgba(255,255,255,0.08);
+    --border: rgba(255,255,255,0.15);
+    --danger: #ff4d6d;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,153 +18,346 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f8c291, #6a89cc);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0,245,160,0.2), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(0,217,245,0.18), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(124,60,255,0.18), transparent 30%),
+        linear-gradient(135deg, #06141b, #071f2a, #041016);
+    overflow-x: hidden;
 }
 
-/* Remove Default List and Link Styles */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 55px 55px;
+    pointer-events: none;
+    animation: gridMove 18s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 120px 120px; }
+}
+
 a {
     text-decoration: none;
+    color: inherit;
 }
 
-li {
-    list-style-type: none;
-}
+/* NAVBAR */
 
-
-header {
+.navbar {
+    height: 78px;
+    padding: 18px 8%;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    padding: 0px 10%;
-    background-color: #9C1B3D;
     justify-content: space-between;
-    width: 100%;
-    min-height: 60px; /* Ensures the header has proper height */
+    background: rgba(6,20,27,0.75);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
 }
 
-/* Logo */
-.logo {
+.brand {
     display: flex;
     align-items: center;
-    color: #FFF;
-    font-weight: 900;
-    margin-left: -40px; /* Adjust this value as needed */
+    gap: 12px;
+    font-weight: 850;
+    font-size: 1.2rem;
 }
 
-
-.logo img {
-    height: 45px;
+.brand img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(0,245,160,0.55));
 }
 
-/* Navigation */
-nav ul {
+nav {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    gap: 16px;
 }
 
-nav ul li {
-    margin-left: 10px;
+nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-weight: 700;
+    transition: 0.3s;
 }
 
-/* Home Button - More Interactive */
-nav ul li a {
-    color: #FFF;
-    display: block;
-    padding: 12px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-    background: linear-gradient(to right, #ff416c, #ff4b2b);
-    box-shadow: 0 4px 8px rgba(255, 65, 108, 0.5);
+nav a:hover {
+    color: var(--primary);
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255,77,109,0.16);
+    border: 1px solid rgba(255,77,109,0.32);
+}
+
+/* PAGE */
+
+.search-page {
+    min-height: calc(100vh - 78px);
+    padding: 80px 8%;
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    align-items: center;
+    gap: 60px;
     position: relative;
+}
+
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.7;
+    animation: floatGlow 7s ease-in-out infinite alternate;
+}
+
+.glow-one {
+    width: 300px;
+    height: 300px;
+    background: rgba(0,245,160,0.22);
+    left: 5%;
+    top: 20%;
+}
+
+.glow-two {
+    width: 330px;
+    height: 330px;
+    background: rgba(124,60,255,0.22);
+    right: 8%;
+    bottom: 8%;
+}
+
+@keyframes floatGlow {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-35px) scale(1.12); }
+}
+
+.search-content,
+.search-card {
+    position: relative;
+    z-index: 2;
+}
+
+.search-content {
+    animation: slideLeft 0.9s ease both;
+}
+
+.badge {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    color: var(--primary);
+    background: rgba(0,245,160,0.12);
+    border: 1px solid rgba(0,245,160,0.28);
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.search-content h1 {
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.04;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.search-content h1 span {
+    display: block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.search-content p {
+    max-width: 650px;
+    margin-top: 24px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 1.04rem;
+}
+
+/* SEARCH CARD */
+
+.search-card {
+    padding: 34px;
+    border-radius: 34px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(22px);
+    box-shadow: 0 35px 90px rgba(0,0,0,0.35);
+    animation: slideRight 0.9s ease both;
     overflow: hidden;
 }
 
-/* Hover Effect for Home Button */
-nav ul li a:hover {
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(255, 75, 43, 0.7);
+.search-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, rgba(0,245,160,0.4), transparent, rgba(0,217,245,0.32));
+    z-index: -1;
+    opacity: 0.55;
 }
 
-/* Container Styles */
-.container {
-    width: 90%;
-    max-width: 800px;
-    margin: 140px auto 50px; /* Adjusted margin for better spacing */
-    padding: 40px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-    text-align: center;
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
 }
 
-/* Heading Styles */
-h1 {
-    font-size: 34px;
-    color: #333;
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+.card-header > i {
+    width: 66px;
+    height: 66px;
+    display: grid;
+    place-items: center;
+    border-radius: 22px;
+    color: #00150f;
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 0 35px rgba(0,245,160,0.35);
 }
 
-/* Select and Button Styling */
-select, button {
-    width: 100%;
-    padding: 14px;
-    font-size: 18px;
-    border-radius: 6px;
-    border: 2px solid #ddd;
-    transition: 0.3s;
+.card-header h2 {
+    font-size: 1.7rem;
+}
+
+.card-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 9px;
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
-/* Focus Effect for Select */
-select:focus {
+.input-box {
+    position: relative;
+}
+
+.input-box i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+    z-index: 2;
+}
+
+select {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px 0 48px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.16);
     outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
-}
-
-/* Button Styling */
-button {
-    background: linear-gradient(to right, #28a745, #218838);
-    color: white;
-    font-weight: bold;
-    border: none;
+    background: rgba(255,255,255,0.1);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
-/* Hover Effect for Button */
+select option {
+    background: #06141b;
+    color: #fff;
+}
+
+select:focus {
+    border-color: rgba(0,245,160,0.8);
+    box-shadow: 0 0 0 4px rgba(0,245,160,0.12);
+}
+
+button {
+    width: 100%;
+    height: 58px;
+    margin-top: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 18px;
+    color: #00150f;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 0 35px rgba(0,245,160,0.35);
+    transition: 0.3s;
+}
+
 button:hover {
-    background: linear-gradient(to right, #218838, #28a745);
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 0 50px rgba(0,245,160,0.55);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px 5%;
+@keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-45px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+    from { opacity: 0; transform: translateX(45px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 980px) {
+    .search-page {
+        grid-template-columns: 1fr;
     }
 
-    nav ul {
-        margin-top: 10px;
+    .search-card {
+        max-width: 560px;
+    }
+}
+
+@media (max-width: 560px) {
+    .navbar {
+        padding: 14px 5%;
     }
 
-    .container {
-        margin-top: 160px;
-        width: 95%;
-        padding: 30px;
+    .brand span {
+        display: none;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+    }
+
+    .search-page {
+        padding: 50px 5%;
+    }
+
+    .search-card {
+        padding: 26px 20px;
     }
 }

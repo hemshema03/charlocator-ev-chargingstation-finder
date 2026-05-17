@@ -1,19 +1,34 @@
-$(document).ready(function() {
-    // Listen for when the user clicks the "Book Now" button
-    $('table').on('click', 'button', function() {
-      // Get the station name from the row
-      var station_name = $(this).closest('tr').find('td:first').text();
-  
-      // Send a POST request to the server with the selected station name
-      $.ajax({
-        type: "POST",
-        url: "/book-now",
-        data: { station_name: station_name },
-        success: function(response) {
-          // Redirect to the booking page
-          window.location.href = "/booking?station_name=" + station_name;
-        }
-      });
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Animate cards one by one
+    const cards = document.querySelectorAll(".station-card");
+
+    cards.forEach((card, index) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(40px)";
+
+        setTimeout(() => {
+            card.style.transition = "all 0.6s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+        }, index * 120);
     });
-  }); // <--- Add this closing curly brace
-  
+
+    // Button hover animation
+    const buttons = document.querySelectorAll(".book-now-btn");
+
+    buttons.forEach(button => {
+
+        button.addEventListener("mouseenter", () => {
+            button.innerHTML =
+                `Booking Slot <i class="fa-solid fa-bolt"></i>`;
+        });
+
+        button.addEventListener("mouseleave", () => {
+            button.innerHTML =
+                `Book Now <i class="fa-solid fa-arrow-right"></i>`;
+        });
+
+    });
+
+});

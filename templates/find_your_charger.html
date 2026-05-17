@@ -3,18 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Charger</title>
+    <title>ChargeLocator | Find Your Charger</title>
+
     <link rel="stylesheet" href="/static/find-your-charger.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <a href="/" class="logo"><img src="/static/pic/LOGO1.PNG" alt="ChargeLocator Logo"></a>
-        <nav><a href="/">Home</a> <a href="/login">Login</a> <a href="/contact_us">Contact Us</a></nav>
-    </header>
-    <main style="padding: 40px; max-width: 900px; margin: auto;">
-        <h1>Find Your Charger</h1>
-        <p>Please login to search charging stations and book a slot.</p>
-        <a href="/login">Login to continue</a>
-    </main>
+
+<header class="navbar">
+    <a href="/" class="brand">
+        <img src="/static/pic/LOGO1.PNG" alt="ChargeLocator Logo">
+        <span>ChargeLocator</span>
+    </a>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login" class="login-btn">Login</a>
+        <a href="/contact_us">Contact</a>
+    </nav>
+</header>
+
+<section class="charger-hero">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <div class="hero-content">
+        <p class="badge">
+            <i class="fa-solid fa-charging-station"></i>
+            Find EV Charging Stations
+        </p>
+
+        <h1>
+            Locate Chargers.
+            <span>Book Slots Faster.</span>
+        </h1>
+
+        <p>
+            Login to search nearby EV charging stations, check charger types,
+            view availability, and reserve your charging slot instantly.
+        </p>
+
+        <a href="/login" class="primary-btn">
+            Login to Continue
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="charger-visual">
+        <div class="station-card">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Station Search Locked</h3>
+            <p>Please login to access real-time station booking.</p>
+        </div>
+
+        <div class="map-card">
+            <div class="pin pin-one"></div>
+            <div class="pin pin-two"></div>
+            <div class="pin pin-three"></div>
+        </div>
+    </div>
+</section>
+
 </body>
 </html>

@@ -2,110 +2,190 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChargeLocator | Station Results</title>
+
     <link rel="stylesheet" href="/static/user/station_search.css">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel=" icon" href="/static/temp/assets/images/icon.ico"/>
-    <title>station search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
+<body>
 
+<header class="navbar">
+    <a href="{{ url_for('home') }}" class="brand">
+        <img src="/static/pic/LOGO1.PNG" alt="ChargeLocator Logo">
+        <span>ChargeLocator</span>
+    </a>
 
-    
-
-<!-- HEADER SECTION -->
-
-
-<header>
-    <a href="{{ url_for('home') }}" class="logo"> <img src="/static/pic/LOGO1.PNG" alt="logo"> </a>
     <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <!-- <li><a href="{{ url_for('user_find_your_charger') }}">Find your charger</a></li> -->
-        </ul>
+        <a href="/user-dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('user_find_your_charger') }}">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search Again
+        </a>
     </nav>
-    
-    
 </header>
 
+<main class="results-page">
 
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
 
-<body>
-	<h1>EV Charging Stations Booking</h1>
-	<p><strong>you have selected the following options:<br><br></strong></p>
-	<ul>
-		<li><strong>City:<br><br> {{ City }} </strong></li><br>
-		<li><strong>Charging Type:<br><br> {{ Charger_type }} </strong></li><br>
-	  </ul>
-	  
-	<p>Please select a charging station from the list below:<br><br></p>
-	<table id="myTable" class="display">
-		<thead>
-			<tr>
-			  <th>Station Name</th>
-			  <th>City</th>
-			  <th>Address</th>
-			  <th>Charge Type</th>
-			  <th>Available Ports</th>
-			  <th style="width: 10%" orderable="false">Book</th>
-			</tr>
-		  </thead>
-		  <tbody>
-			{% for station in data %}
-			<tr>
-			  <td>{{ station.Station_name }}</td>
-			  <td>{{ station.City }}</td>
-			  <td>{{ station.Address }}</td>
-			  <td>{{ station.Charger_type }}</td>
-			  <td>
-				<select name="ports">
-				  {% for port in station.Available_ports %}
-				  <option value="{{ port }}">{{ port }}</option>
-				  {% endfor %}
-				</select>
-			  </td>
-			  <td>
-				<button class="book-now-btn" data-station="{{ station.Station_name }}" data-city="{{ station.City }}" data-available-ports="{{ station.Available_ports }}">Book Now</button>
-			  </td>
-			</tr>
-			{% endfor %}
-		  </tbody>
-		  
-	</table>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <section class="results-header">
+
+        <p class="badge">
+            <i class="fa-solid fa-charging-station"></i>
+            Available Stations
+        </p>
+
+        <h1>
+            Charging Stations
+            <span>Ready for Booking</span>
+        </h1>
+
+        <div class="selected-info">
+
+            <div>
+                <i class="fa-solid fa-city"></i>
+                <p>Selected City</p>
+                <h3>{{ City }}</h3>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-bolt"></i>
+                <p>Charging Type</p>
+                <h3>{{ Charger_type }}</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="station-grid">
+
+        {% for station in data %}
+
+        <article class="station-card">
+
+            <div class="station-top">
+
+                <div class="station-icon">
+                    <i class="fa-solid fa-plug-circle-bolt"></i>
+                </div>
+
+                <span class="status-badge">Available</span>
+
+            </div>
+
+            <!-- FIXED LOWERCASE VARIABLES -->
+
+            <h2>{{ station.station_name }}</h2>
+
+            <div class="station-details">
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ station.address }}
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-city"></i>
+                    {{ station.city }}
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-bolt"></i>
+                    {{ station.charger_type }}
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-square-parking"></i>
+                    {{ station.available_ports }} Ports Available
+                </p>
+
+            </div>
+
+            <button
+                class="book-now-btn"
+                data-station="{{ station.station_name }}"
+                data-city="{{ station.city }}"
+                data-available-ports="{{ station.available_ports }}">
+
+                Book Now
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </article>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <h2>No stations found</h2>
+
+            <p>
+                Try selecting another city or charger type.
+            </p>
+
+            <a href="{{ url_for('user_find_your_charger') }}">
+                Search Again
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
 <script>
-	$(function() {
-		$('.book-now-btn').on('click', function() {
-			var stationName = $(this).data('station');
-			var city = $(this).data('city');
-			var available_ports = $(this).data('available-ports');
 
-			$.ajax({
-				url: '/booking',
-				method: 'POST',
-				data: { 
-					Station_name: stationName,
-					City: city,
-					Available_ports: available_ports 
-				},
-				success: function(response) {
-					window.location.href = '/booking?Station_name=' + stationName + '&City=' + city + '&Available_ports=' + available_ports;
-				},
-				error: function(error) {
-   				console.log("There was an error in ajax: " + error);
-}
-			});
-		});
-		$('#myTable').DataTable({
-			paging: false,
-			searching: false,
-			ordering: false,
-			
-		});
-	});
+$(function () {
+
+    $(".book-now-btn").on("click", function () {
+
+        const stationName = $(this).data("station");
+        const city = $(this).data("city");
+        const availablePorts = $(this).data("available-ports");
+
+        $.ajax({
+            url: "/booking",
+            method: "POST",
+
+            data: {
+                Station_name: stationName,
+                City: city,
+                Available_ports: availablePorts
+            },
+
+            success: function () {
+
+                window.location.href =
+                    "/booking?Station_name=" + encodeURIComponent(stationName) +
+                    "&City=" + encodeURIComponent(city) +
+                    "&Available_ports=" + encodeURIComponent(availablePorts);
+
+            },
+
+            error: function (error) {
+                console.log("Booking request error:", error);
+            }
+        });
+
+    });
+
+});
+
 </script>
+
 </body>
 </html>

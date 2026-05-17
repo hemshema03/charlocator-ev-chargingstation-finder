@@ -1,57 +1,118 @@
-<!-- 
-Online HTML, CSS and JavaScript editor to run code online.
--->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChargeLocator | Support & Feedback</title>
+
     <link rel="stylesheet" href="/static/contact-us.css">
-    <link rel="stylesheet" href="/static/contact us.js">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Feedback </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<header>
-  <a href="{{ url_for('home') }}" class="logo"> <img src="/static/pic/LOGO1.PNG" alt="logo"> </a>
-  <nav>
-    <ul>
-      <li><a href="http://127.0.0.1:5000/user-dashboard">Back</a></li>
-     
-  </ul>
-  </nav>
-  
-  
+<body>
+
+<header class="navbar">
+    <a href="{{ url_for('home') }}" class="brand">
+        <img src="/static/pic/LOGO1.PNG" alt="ChargeLocator Logo">
+        <span>ChargeLocator</span>
+    </a>
+
+    <nav>
+        <a href="/user-dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+        <a href="{{ url_for('user_find_your_charger') }}">
+            <i class="fa-solid fa-charging-station"></i>
+            Book Slot
+        </a>
+    </nav>
 </header>
 
+<main class="feedback-page">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
 
-<body>
-  <div class="contact_us">
-    <h2>Feedback 😊</h2>
-    <form id="contact_usform" action="/contact_us" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
+    <section class="feedback-content">
+        <p class="badge">
+            <i class="fa-solid fa-headset"></i>
+            Support Center
+        </p>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
+        <h1>
+            Share Your
+            <span>Charging Experience</span>
+        </h1>
 
-      <label for="message">Feedback:</label>
-      <textarea id="message" name="message" required></textarea>
+        <p>
+            Help us improve ChargeLocator. Send feedback about station availability,
+            booking experience, UI issues, or feature suggestions.
+        </p>
 
-      <input type="submit" value="Send">
-    </form>
-  </div>
+        <div class="support-cards">
+            <div>
+                <i class="fa-solid fa-clock"></i>
+                <h3>Quick Response</h3>
+                <p>Your feedback helps admins improve the platform.</p>
+            </div>
 
-  {% if message %}
-    <script>
-      alert("{{ message }}");
-    </script>
-  {% endif %}
+            <div>
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Secure Feedback</h3>
+                <p>Your details are stored safely in the system database.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-card">
+        <div class="card-header">
+            <div class="icon-box">
+                <i class="fa-solid fa-comment-dots"></i>
+            </div>
+            <div>
+                <h2>Send Feedback</h2>
+                <p>Tell us how we can improve</p>
+            </div>
+        </div>
+
+        <form id="contact_usform" action="/contact_us" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Feedback Message</label>
+                <div class="input-box textarea-box">
+                    <i class="fa-solid fa-message"></i>
+                    <textarea id="message" name="message" placeholder="Write your feedback..." required></textarea>
+                </div>
+            </div>
+
+            <button type="submit">
+                Send Feedback
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </section>
+</main>
+
+{% if message %}
+<script>
+    alert("{{ message }}");
+</script>
+{% endif %}
+
 </body>
-
-
-
-
-</html>
 </html>

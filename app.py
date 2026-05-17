@@ -406,19 +406,32 @@ def usr_delete_booking(booking_id):
 
 
 
-@app.route('/user_find_your_charger', methods=['GET', 'POST'])
+@app.route('/user_find_your_charger', methods=['GET'])
 def user_find_your_charger():
     if 'user_type' in session and session['user_type'] == 'user':
-        if request.method == 'POST':
-            city = request.form.get('City')
-            charger_type = request.form.get('Charger_type')
-            db = Db()
-            qry = db.select("select Station_name, Address, Charger_type, Available_ports from admin_charging_station_list where City = %s and Charger_type = %s", (city, charger_type))
-            return render_template('user/station_search.html', data=qry)       
-        else:
-            return render_template('user/user_find_your_charger.html')
-    else:
-        return redirect('/')
+        db = Db()
+
+        cities = db.select("""
+            SELECT DISTINCT city 
+            FROM admin_charging_station_list 
+            WHERE city IS NOT NULL AND city != ''
+            ORDER BY city ASC
+        """)
+
+        charger_types = db.select("""
+            SELECT DISTINCT charger_type 
+            FROM admin_charging_station_list 
+            WHERE charger_type IS NOT NULL AND charger_type != ''
+            ORDER BY charger_type ASC
+        """)
+
+        return render_template(
+            'user/user_find_your_charger.html',
+            cities=cities,
+            charger_types=charger_types
+        )
+
+    return redirect('/')
 
 
 

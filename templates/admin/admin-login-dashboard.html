@@ -1,92 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/static/admin/admin-login-dashboard.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin-home</title>
+    <title>ChargeLocator | Admin Dashboard</title>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-     <!-- <link rel="stylesheet" href="user-login dashboard.js"> -->
+    <link rel="stylesheet" href="/static/admin/admin-login-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
+<body>
 
+<div class="admin-dashboard">
 
-    
+    <aside class="sidebar">
+        <a href="/admin-home" class="brand">
+            <img src="/static/pic/LOGO1.PNG" alt="ChargeLocator Logo">
+            <span>ChargeLocator</span>
+        </a>
 
-<!-- HEADER SECTION -->
+        <nav class="side-nav">
+            <a href="/admin-home" class="active">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
 
+            <a href="/Manage_station">
+                <i class="fa-solid fa-charging-station"></i>
+                Manage Stations
+            </a>
 
+            <a href="/view_booking">
+                <i class="fa-solid fa-calendar-check"></i>
+                View Bookings
+            </a>
 
-    <body>
+            <a href="/view_feedback">
+                <i class="fa-solid fa-comment-dots"></i>
+                View Feedback
+            </a>
 
-<!-- BODY SECTION -->
+            <a href="/logout" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </nav>
 
-<div class="d-flex toggled" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="text-right">
-        <button class="sidebar-toggler" id="sidebar-toggle-onSidebar">
-          <span class="icon-bar top-bar"></span>
-          <span class="icon-bar middle-bar"></span>
-       
-        </button>
-      </div>
-  
-      <!-- <div class="sidebar-heading">Start Bootstrap </div> -->
-      <div class="list-group list-group-flush">
-        <a href="/admin-home" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="/Manage_station" class="list-group-item list-group-item-action bg-light">Manage Station</a>
-
-        <a href="/view_booking" class="list-group-item list-group-item-action bg-light">view booking</a>
-        <a href="/view_feedback" class="list-group-item list-group-item-action bg-light">view feedback</a>
-        <a href="/logout" class="list-group-item list-group-item-action bg-light">logout</a>
-       
-        
-      </div>
-    </div>
-    <div id="sidebar-empty-space" class="empty-space-sidebar"></div>
-    <!-- /#sidebar-wrapper -->
-  
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-  
-      <nav class="navbar navbar-light scroll scrolling-navbar py-2">
-        <!-- <button class="sidebar-toggler" id="sidebar-toggle-onNavbar"> -->
-          <!-- <span class="icon-bar top-bar"></span> -->
-          <!-- <span class="icon-bar middle-bar"></span> -->
-          <!-- <span class="icon-bar bottom-bar"></span> -->
-        <!-- </button> -->
-  
-        <!-- <div class="container scroll d-flex flex-row justify-content-center px-0">
-          <a class="nav-link nav-link-secondary" href="https://www.schermabergamo.it/prossime-gare/">Prossime gare
-            <div class="navbar-underline"></div></a>
-          <a class="nav-link nav-link-secondary" href="https://www.schermabergamo.it/calendari-gare/">Calendari gare
-            <div class="navbar-underline"></div></a>
-          <a class="nav-link nav-link-secondary" href="https://www.adfencing.it/schermabergamo/login.php" target="_blank" rel="author noopener">Gestionale
-            <div class="navbar-underline"></div></a>
+        <div class="sidebar-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h4>Admin Control</h4>
+            <p>Manage EV stations, monitor bookings, and review customer feedback.</p>
         </div>
-   -->
-      </nav>
+    </aside>
 
+    <main class="main-content">
 
-      <div class="container-fluid">
-        <h1 class="mt-4">Welcome to your dashboard {{ username }}! </h1>
-      </div>
-    
-     
+        <section class="topbar">
+            <div>
+                <p class="welcome-label">Admin Panel</p>
+                <h1>Welcome, {{ username }}</h1>
+            </div>
 
+            <a href="/Manage_station" class="top-action">
+                <i class="fa-solid fa-plus"></i>
+                Add Station
+            </a>
+        </section>
 
+        <section class="stats-grid">
+            <a href="/Manage_station" class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-charging-station"></i>
+                </div>
+                <div>
+                    <p>Station Management</p>
+                    <h2>Manage</h2>
+                </div>
+            </a>
 
-<!-- FOOTER SECTION -->
+            <a href="/view_booking" class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div>
+                    <p>Booking Records</p>
+                    <h2>View</h2>
+                </div>
+            </a>
 
-       
+            <a href="/view_feedback" class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <div>
+                    <p>User Feedback</p>
+                    <h2>Review</h2>
+                </div>
+            </a>
+        </section>
+
+        <section class="admin-panel">
+            <div>
+                <p class="section-label">Control Center</p>
+                <h2>Manage the EV Charging Platform</h2>
+                <p>
+                    Use this dashboard to manage charging stations, monitor slot bookings,
+                    and review feedback submitted by users. This admin panel helps maintain
+                    station availability and improve the user charging experience.
+                </p>
+            </div>
+
+            <div class="quick-actions">
+                <a href="/Manage_station">
+                    <i class="fa-solid fa-plus"></i>
+                    Add / Update Stations
+                </a>
+
+                <a href="/view_booking">
+                    <i class="fa-solid fa-list-check"></i>
+                    Check Bookings
+                </a>
+
+                <a href="/view_feedback">
+                    <i class="fa-solid fa-headset"></i>
+                    Customer Feedback
+                </a>
+            </div>
+        </section>
+
+    </main>
+</div>
+
 </body>
-   
-    </html>
+</html>

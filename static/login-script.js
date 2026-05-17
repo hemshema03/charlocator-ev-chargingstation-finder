@@ -1,92 +1,143 @@
-const loginForm = document.querySelector('#login');
-const createAccountForm = document.querySelector('#createAccount');
-const loginLink = document.querySelector('#loginLink');
-const createAccountLink = document.querySelector('#createAccountLink');
+const loginForm = document.querySelector("#login");
+const createAccountForm = document.querySelector("#createAccount");
+const loginLink = document.querySelector("#loginLink");
+const createAccountLink = document.querySelector("#createAccountLink");
 
-loginLink.addEventListener('click', e => {
-    e.preventDefault();
-    loginForm.classList.remove('form--hidden');
-    createAccountForm.classList.add('form--hidden');
-});
+function showForm(formToShow, formToHide) {
+    formToHide.classList.add("form--hidden");
+    formToShow.classList.remove("form--hidden");
 
-createAccountLink.addEventListener('click', e => {
-    e.preventDefault();
-    loginForm.classList.add('form--hidden');
-    createAccountForm.classList.remove('form--hidden');
-});
+    formToShow.animate(
+        [
+            { opacity: 0, transform: "translateY(18px) scale(0.98)" },
+            { opacity: 1, transform: "translateY(0) scale(1)" }
+        ],
+        {
+            duration: 350,
+            easing: "ease-out"
+        }
+    );
 
-loginForm.addEventListener('submit', e => {
-    const username = document.querySelector('#username').value;
-    const password = document.querySelector('#password').value;
-    const errorContainer = document.querySelector('#login .form__message--error');
-    const errorMessages = document.querySelectorAll('#login .form__input-error-message');
-    let isError = false;
+    clearAllErrors();
+}
 
-    // Clear previous error messages
-    errorContainer.innerHTML = '';
-    errorMessages.forEach(message => message.textContent = '');
+function clearAllErrors() {
+    document.querySelectorAll(".form__message--error").forEach((box) => {
+        box.textContent = "";
+    });
 
-    // Perform form validation
-    if (username.trim() === '') {
-        displayErrorMessage('username', 'Please enter a username');
-        isError = true;
+    document.querySelectorAll(".form__input-error-message").forEach((box) => {
+        box.textContent = "";
+    });
+
+    document.querySelectorAll(".form__input").forEach((input) => {
+        input.classList.remove("form__input--error");
+    });
+}
+
+function setError(input, message) {
+    const group = input.closest(".form__input-group");
+    const errorBox = group.querySelector(".form__input-error-message");
+
+    input.classList.add("form__input--error");
+
+    if (errorBox) {
+        errorBox.textContent = message;
     }
+}
 
-    if (password.trim() === '') {
-        displayErrorMessage('password', 'Please enter a password');
-        isError = true;
-    }
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
-    if (isError) {
-        e.preventDefault();
-        errorContainer.textContent = 'Please enter the required details.';
-    }
-});
+if (loginLink) {
+    loginLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        showForm(loginForm, createAccountForm);
+    });
+}
 
-createAccountForm.addEventListener('submit', e => {
-    const username = document.querySelector('#signupUsername').value;
-    const email = document.querySelector('#createAccount input[name="email"]').value;
-    const password = document.querySelector('#createAccount input[name="password"]').value;
-    const confirmPassword = document.querySelector('#createAccount input[name="confirmPassword"]').value;
-    const errorContainer = document.querySelector('#createAccount .form__message--error');
-    const errorMessages = document.querySelectorAll('#createAccount .form__input-error-message');
-    let isError = false;
+if (createAccountLink) {
+    createAccountLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        showForm(createAccountForm, loginForm);
+    });
+}
 
-    // Clear previous error messages
-    errorContainer.innerHTML = '';
-    errorMessages.forEach(message => message.textContent = '');
+if (loginForm) {
+    loginForm.addEventListener("submit", (event) => {
+        clearAllErrors();
 
-    // Perform form validation
-    if (username.trim() === '') {
-        displayErrorMessage('signupUsername', 'Please enter a username');
-        isError = true;
-    }
+        const username = loginForm.querySelector("#username");
+        const password = loginForm.querySelector("#password");
+        const errorContainer = loginForm.querySelector(".form__message--error");
 
-    if (email.trim() === '') {
-        displayErrorMessage('email', 'Please enter an email address');
-        isError = true;
-    }
+        let hasError = false;
 
-    if (password.trim() === '') {
-        displayErrorMessage('password', 'Please enter a password');
-        isError = true;
-    }
+        if (!username.value.trim()) {
+            setError(username, "Username or email is required");
+            hasError = true;
+        }
 
-    if (confirmPassword.trim() === '') {
-        displayErrorMessage('confirmPassword', 'Please confirm the password');
-        isError = true;
-    } else if (password !== confirmPassword) {
-        displayErrorMessage('confirmPassword', 'Passwords do not match');
-        isError = true;
-    }
+        if (!password.value.trim()) {
+            setError(password, "Password is required");
+            hasError = true;
+        }
 
-    if (isError) {
-        e.preventDefault();
-        errorContainer.textContent = 'Please enter the required details.';
-    }
-});
+        if (hasError) {
+            event.preventDefault();
+            errorContainer.textContent = "Please correct the highlighted fields.";
+        }
+    });
+}
 
-function displayErrorMessage(inputName, message) {
-    const errorContainer = document.querySelector(`#${inputName} + .form__input-error-message`);
-    errorContainer.textContent = message;
+if (createAccountForm) {
+    createAccountForm.addEventListener("submit", (event) => {
+        clearAllErrors();
+
+        const username = createAccountForm.querySelector("#signupUsername");
+        const email = createAccountForm.querySelector('input[name="email"]');
+        const password = createAccountForm.querySelector('input[name="password"]');
+        const confirmPassword = createAccountForm.querySelector('input[name="confirmPassword"]');
+        const errorContainer = createAccountForm.querySelector(".form__message--error");
+
+        let hasError = false;
+
+        if (!username.value.trim()) {
+            setError(username, "Username is required");
+            hasError = true;
+        } else if (username.value.trim().length < 3) {
+            setError(username, "Username must be at least 3 characters");
+            hasError = true;
+        }
+
+        if (!email.value.trim()) {
+            setError(email, "Email address is required");
+            hasError = true;
+        } else if (!isValidEmail(email.value.trim())) {
+            setError(email, "Enter a valid email address");
+            hasError = true;
+        }
+
+        if (!password.value.trim()) {
+            setError(password, "Password is required");
+            hasError = true;
+        } else if (password.value.length < 6) {
+            setError(password, "Password must be at least 6 characters");
+            hasError = true;
+        }
+
+        if (!confirmPassword.value.trim()) {
+            setError(confirmPassword, "Confirm your password");
+            hasError = true;
+        } else if (password.value !== confirmPassword.value) {
+            setError(confirmPassword, "Passwords do not match");
+            hasError = true;
+        }
+
+        if (hasError) {
+            event.preventDefault();
+            errorContainer.textContent = "Please correct the highlighted fields.";
+        }
+    });
 }
