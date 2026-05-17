@@ -188,42 +188,48 @@ http://127.0.0.1:5000
 ## Project Screenshots
 
 ### Home Page
-![Home Page](screenshots/index.png)
+![Home Page](screenshots/index1.png)
 
 ### Login Page
-![Login](screenshots/login.png)
+![Login](screenshots/login2.png)
 
 ### User Dashboard
-![Dashboard](screenshots/UserDasboard.png.png)
+![Dashboard](screenshots/UserDasboard2.png)
 
 ### Booking Form
-![Booking Form](screenshots/bookingform.png)
+![Booking Form](screenshots/bookingform2.png)
 
-### Admin Panel
-![Admin Panel](screenshots/Admin_manage_station.png.png)
+### Admin panel
+![Admin Panel](screenshots/Admindashboard2.png)
+
+
+
+---
+## 👨‍💻 Future Enhancements
+
+- 🗺 Live Google Maps Integration
+- 📡 Real-Time Slot Availability
+- 💳 Online Payment Gateway
+- 📱 Mobile App Version
+- 🔔 Notification System
+- 📍 GPS Nearby Charger Detection
+- ⚡ AI-Based Charger Recommendation
+- 🌎 Public EV Charging API Integration
 
 ---
 
-## Future Enhancements
+## 👨‍💻 Developed By
 
-- Google Maps Integration
-- Real-time charger availability
-- Online payment gateway
-- Mobile responsive UI
-- Live location-based station finder
-- Email/SMS notifications
+### Hemachandran M
+
+Passionate Full Stack Developer focused on building futuristic and user-friendly applications.
 
 ---
 
-## Author
+## ⭐ Support
 
-**Hemachandran M**
+If you like this project:
 
-M.Sc. Software Systems  
-Sri Krishna Arts and Science College
-
----
-
-## License
-
-This project is developed for educational and portfolio purposes.
+⭐ Star this repository  
+🍴 Fork this project  
+🚀 Follow for more futuristic projects
